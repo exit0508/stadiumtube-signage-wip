@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="signage.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.1.0/anime.min.js"></script>
+
+
+    <link href="https://vjs.zencdn.net/7.10.2/video-js.css" rel="stylesheet" />
+    <script src="https://vjs.zencdn.net/7.10.2/video.min.js"></script>
+
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1162.0.min.js"></script>
+    
+  </head>
+  <body>
+    <h1 class="ml12">.</h1>
+    <div class="player" id="upperplayer">
+      <video id="live-player" class="video-js" id="video" data-setup={} controls playsinline autoplay preload="auto" muted loop>
+        <source src="https://d1d571sdp9ba4j.cloudfront.net/nttwest/6235532554980f5eaccdc168/venue_hls/hd_hls/hd_hls.m3u8" type="application/x-mpegURL">
+      </video>
+    </div>
+
+    <div class="vod-video" id="gridplayer">
+      <video id="vod0" class="video-js" id="video" data-setup={} controls playsinline autoplay preload="auto" muted loop>
+        <source src="./vod/Pixellot S1 - Soccer - 25fps_1080_03.mp4" type="video/mp4">
+      </video>
+      <video id="vod1" class="video-js" id="video" data-setup={} controls playsinline autoplay preload="auto" muted loop>
+        <source src="./vod/Pixellot S1 - Basketball - 25fps_1080_3.mp4" type="video/mp4">
+      </video>
+      <video id="vod2" class="video-js" id="video" data-setup={} controls playsinline autoplay preload="auto" muted loop>
+        <source src="./vod/Baseball_S2S_Additional_Cam_1.mp4" type="video/mp4">
+      </video>
+      <video id="vod3" class="video-js" id="video" data-setup={} controls playsinline autoplay preload="auto" muted loop>
+        <source src="./vod/Pixellot S1 - Rugby - 25fps_1080_04.mp4" type="video/mp4">
+      </video>
+
+    </div>
+
+    <div class="logos" id="logos">
+      <img id="px" src="./img/pixellot.png">
+      <img id="st" src="./img/stadiumtube.png">
+      <img id="ns" src="./img/nttsportict.png">
+    </div>
+
+    <script src="get_events.js"></script>
+    <script src="effect.js"></script>
+
+  </body>
+</html>
