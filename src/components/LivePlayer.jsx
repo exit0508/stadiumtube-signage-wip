@@ -1,9 +1,9 @@
 import VideoPlayer from './VideoPlayer';
 
-const LivePlayer = ({src}) => {
+const LivePlayer = ({source}) => {
   return (
     <div className="player live-video">
-      <VideoPlayer src={src}
+      <VideoPlayer src={source}
         options={{
           responsive: true,
           fluid: true,
