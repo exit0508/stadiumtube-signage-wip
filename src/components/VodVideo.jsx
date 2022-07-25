@@ -6,7 +6,7 @@ const VodVideo = ({sources, number = 4}) => {
       sources[i] = {src: "/baseball.mp4", type: "video/mp4"};
     }
   }
-  const videoPlayers = sources.map((src, i) => <VideoPlayer key={i} src={src} options={{fluid: true}} />);
+  const videoPlayers = sources.map((src, i) => <VideoPlayer key={i} source={src} options={{fluid: true}} />);
   return (
     <div className="player vod-video">
       {videoPlayers}

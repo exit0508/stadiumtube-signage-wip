@@ -3,7 +3,7 @@ import VideoPlayer from './VideoPlayer';
 const LivePlayer = ({source}) => {
   return (
     <div className="player live-video">
-      <VideoPlayer src={source}
+      <VideoPlayer source={source}
         options={{
           responsive: true,
           fluid: true,

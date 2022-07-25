@@ -11,7 +11,11 @@ export const getServerSideProps = async (context) => {
   return {
     props: {
       venueId,
-      vodEvents: events.map((event) => { return {src: event.urls.hd}; }),
+      vodEvents: events.map((event) => { return {
+        src: event.urls.hd,
+        startDate: event['start$date'],
+        endDate: event['end$date'],
+      }; }),
     },
   }
 };
@@ -43,8 +47,16 @@ export default function Home(props) {
   return (
     <div>
       <AnimeWord mode={mode} />
-      {mode === 'live_hd' && <LivePlayer source={liveEvent.liveStreamUrls.hd} />}
-      {mode === 'live_pano' && <LivePlayer source={liveEvent.liveStreamUrls.pano} />}
+      {mode === 'live_hd' && <LivePlayer source={{
+        src: liveEvent.liveStreamUrls.hd,
+        startDate: liveEvent['start$date'],
+        endDate: liveEvent['end$date'],
+      }} />}
+      {mode === 'live_pano' && <LivePlayer source={{
+        src: liveEvent.liveStreamUrls.pano,
+        startDate: liveEvent['start$date'],
+        endDate: liveEvent['end$date'],
+      }} />}
       {mode === 'vod' && <VodVideo sources={vodEvents} />}
       <CompanyLogos />
       <style jsx global>{`

@@ -55,3 +55,16 @@ body {
   height: auto;
   vertical-align: middle;
 }
+
+.video {
+  position: relative;
+}
+
+.dates {
+  position: absolute;
+  bottom: 15px;
+  right: 25px;
+  z-index: 10;
+  font-size: large;
+  color: whitesmoke;
+}
