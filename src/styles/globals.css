@@ -1,0 +1,70 @@
+body {
+  background-color: #24313B;
+}
+
+.ml12 {
+  font-weight: 200;
+  font-size: 1.8em;
+  text-transform: uppercase;
+  letter-spacing: 0.5em;
+}
+
+.ml12 .letter {
+  display: inline-block;
+  line-height: 1em;
+  color: white;
+  margin-left: 1em;
+}
+
+.player {
+  margin-left: 1.7em;
+  width: auto;
+}
+
+.live-video {
+  display: block;
+  width: 95%;
+}
+
+.vod-video {
+  display: grid;
+  grid-template-columns: 48.7% 48.7%;
+}
+
+.company-logos {
+  display: inline-block;
+  margin-left: auto;
+  text-align: right;
+  margin-right: 1em;
+}
+
+#px {
+  width: 12%;
+  height: auto;
+  vertical-align: middle;
+}
+
+#st {
+  width: 20%;
+  height: auto;
+  vertical-align: middle;
+}
+
+#ns {
+  width: 15%;
+  height: auto;
+  vertical-align: middle;
+}
+
+.video {
+  position: relative;
+}
+
+.dates {
+  position: absolute;
+  bottom: 15px;
+  right: 25px;
+  z-index: 10;
+  font-size: large;
+  color: whitesmoke;
+}
