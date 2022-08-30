@@ -3,6 +3,7 @@ import AnimeWord from "../components/AnimeWord";
 import CompanyLogos from "../components/CompanyLogos";
 import VodVideo from "../components/VodVideo";
 import LivePlayer from "../components/LivePlayer";
+import PaymentForm from "../components/PaymentForm";
 import { getVodEvents } from '../utils/PixellotEvents';
 
 export const getServerSideProps = async (context) => {
@@ -59,6 +60,7 @@ export default function Home(props) {
       }} />}
       {mode === 'vod' && <VodVideo sources={vodEvents} />}
       <CompanyLogos />
+      <PaymentForm />
       <style jsx global>{`
         body {
           background: ${mode === 'vod' ? "#24313B" : "#F18FA2"};
