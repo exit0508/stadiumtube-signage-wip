@@ -14,7 +14,12 @@ const checkoutApi = async (req, res) => {
         var data = req.body
         console.log(data)
         const response = await terminalApi.createTerminalCheckout(data)
-        res.status(200).json({ response })
+        //console.log(response)
+        if(response.statusCode !== 200){
+          throw new Error(response.body);
+        }
+        const responseData = JSON.parse(response.body);
+        res.status(200).json(responseData)
       }catch (error) {
         console.error(error);
         res.status(500).json({ message: error.message });

@@ -34,7 +34,8 @@ const PaymentButton = () => {
             body: JSON.stringify(params) 
         });
         if (res.status === 200){
-            var json = res.json()
+            var json = await res.json()
+            console.log(json)
             alert("Success")
         } else {
             alert("error")
