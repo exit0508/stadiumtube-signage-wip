@@ -4,7 +4,7 @@ import 'video.js/dist/video-js.css';
 import { format, parseISO } from 'date-fns';
 
 const dateIsoToStr = (dateISO) => {
-  const dateFormat = 'yyyy-MM-dd HH:mm';
+  const dateFormat = 'yyyy MM/dd HH:mm';
   return format(parseISO(dateISO), dateFormat);
 };
 
@@ -28,7 +28,7 @@ const VideoPlayer = ({ source, options }) => {
   return (
     <div className="video">
       {(source.startDate && source.endDate) &&
-        <span className="dates">{dateIsoToStr(source.startDate)} - {dateIsoToStr(source.endDate)}</span>
+        <span className="dates">{dateIsoToStr(source.startDate)}</span>
       }
       <video className="video-js" ref={onVideo} playsInline preload="auto" muted loop autoPlay />
     </div>
