@@ -5,6 +5,7 @@ import VodVideo from "../components/VodVideo";
 import LivePlayer from "../components/LivePlayer";
 import PaymentForm from "../components/PaymentForm";
 import { getVodEvents } from '../utils/PixellotEvents';
+import TransitionAnime from "../components/TransitionAnime";
 
 export const getServerSideProps = async (context) => {
   const venueId = process.env['VENUE_ID'] || '5dd2966df08c6007922ed4ce';
@@ -47,14 +48,22 @@ export default function Home(props) {
 
   return (
     <div>
+
+      <select value={mode} onChange={(event)=>setMode(event.target.value)}>
+        <option value="vod">vod</option>
+        <option value="live_hd">live_hd</option>
+        <option value="live_pano">live_pano</option>
+      </select>
+      <TransitionAnime mode={mode} />
+
       <AnimeWord mode={mode} />
       {mode === 'live_hd' && <LivePlayer source={{
-        src: liveEvent.liveStreamUrls.hd,
+        //src: liveEvent.liveStreamUrls.hd,
         startDate: liveEvent['start$date'],
         endDate: liveEvent['end$date'],
       }} />}
       {mode === 'live_pano' && <LivePlayer source={{
-        src: liveEvent.liveStreamUrls.pano,
+        //src: liveEvent.liveStreamUrls.pano,
         startDate: liveEvent['start$date'],
         endDate: liveEvent['end$date'],
       }} />}
