@@ -7,11 +7,28 @@ import PaymentForm from "../components/PaymentForm";
 import { getVodEvents } from '../utils/PixellotEvents';
 import TransitionAnime from "../components/TransitionAnime";
 
+// local env
+import Link from 'next/link';
+import settingJson from "../pages/setting.json"
+import fsPromises from 'fs/promises'
+import path from 'path'
+
 export const getServerSideProps = async (context) => {
   const venueId = process.env['VENUE_ID'] || '5dd2966df08c6007922ed4ce';
   const events = await getVodEvents(venueId);
+
+  //local env
+  const filePath = path.join(process.cwd(), '/src/pages/setting.json');
+  const data = await fsPromises.readFile(filePath);
+  const params = JSON.parse(data);
+
+  // const res = await fetch(settingJson);
+  // const params = await res.json();
+  console.log(params);
+
   return {
     props: {
+      params,
       venueId,
       vodEvents: events.map((event) => { return {
         src: event.urls.hd,
@@ -23,6 +40,7 @@ export const getServerSideProps = async (context) => {
 };
 
 export default function Home(props) {
+  console.log('props: ' + props)
   const [mode, setMode] = useState('vod');
   const [liveEvent, setLiveEvent] = useState({});
   const { venueId, vodEvents } = props;
@@ -53,6 +71,7 @@ export default function Home(props) {
         <option value="vod">vod</option>
         <option value="live_hd">live_hd</option>
         <option value="live_pano">live_pano</option>
+        <option value="ad_slide">live_pano</option>
       </select>
       <TransitionAnime mode={mode} />
 
@@ -69,7 +88,21 @@ export default function Home(props) {
       }} />}
       {mode === 'vod' && <VodVideo sources={vodEvents} />}
       <CompanyLogos />
-      <PaymentForm />
+
+      <h1>一覧</h1>
+      <ul>
+        {props.params.map((item)=>{
+          return (
+            <li key={item.id}>
+               <Link href={`/venue/${item.id}`}>
+                <a>{item.title}</a>
+              </Link>
+            </li>
+          )
+        })}
+      </ul>
+
+      {/* <PaymentForm /> */}
       <style jsx global>{`
         body {
           background: ${mode === 'vod' ? "#24313B" : "#F18FA2"};
@@ -78,3 +111,4 @@ export default function Home(props) {
     </div>
   );
 };
+
