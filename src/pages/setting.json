@@ -1,14 +1,16 @@
 [
     {
         "venueId": 1,
-        "id": 1,
-        "title": "narafa",
-        "imgURL": "https://pixabay.com/images/id-613199/"
+        "venue": "nara",
+        "imgURL": "https://pixabay.com/images/id-613199/",
+        "vodURL": "https://d1d571sdp9ba4j.cloudfront.net/nttwest/635a7589cb45435816e7eafe/hd-copied.mp4",
+        "mode": 0
     },
     {
         "venueId": 2,
-        "id": 2,
         "title": "test",
-        "imgURL": "https://pixabay.com/images/id-613199/"
+        "imgURL": "https://pixabay.com/images/id-613199/",
+        "vodURL": null,
+        "mode": 1
     }
 ]
