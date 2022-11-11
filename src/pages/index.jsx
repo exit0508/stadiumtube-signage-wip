@@ -24,7 +24,6 @@ export const getServerSideProps = async (context) => {
 
   // const res = await fetch(settingJson);
   // const params = await res.json();
-  console.log(params);
 
   return {
     props: {
@@ -40,62 +39,17 @@ export const getServerSideProps = async (context) => {
 };
 
 export default function Home(props) {
-  console.log('props: ' + props)
-  const [mode, setMode] = useState('vod');
-  const [liveEvent, setLiveEvent] = useState({});
-  const { venueId, vodEvents } = props;
-
-  useEffect(() => {
-    const timer = setInterval(async () => {
-      const response = await fetch(`/api/liveevents?venueId=${venueId}`);
-      if (response.status === 200) {
-        const events = await response.json();
-        if (events.length > 0 && events[0].liveStreamUrls) {
-          setLiveEvent(events[0]);
-          if (mode === 'live_hd') setMode('live_pano');
-          else setMode('live_hd');
-        } else {
-          setMode('vod');
-        }
-      } else {
-        setMode('vod');
-      }
-    }, 60 * 1000);
-    return () => clearInterval(timer);
-  }, [mode]);
+  //console.log('props: ' + props)
 
   return (
     <div>
-
-      <select value={mode} onChange={(event)=>setMode(event.target.value)}>
-        <option value="vod">vod</option>
-        <option value="live_hd">live_hd</option>
-        <option value="live_pano">live_pano</option>
-        <option value="ad_slide">live_pano</option>
-      </select>
-      <TransitionAnime mode={mode} />
-
-      <AnimeWord mode={mode} />
-      {mode === 'live_hd' && <LivePlayer source={{
-        //src: liveEvent.liveStreamUrls.hd,
-        startDate: liveEvent['start$date'],
-        endDate: liveEvent['end$date'],
-      }} />}
-      {mode === 'live_pano' && <LivePlayer source={{
-        //src: liveEvent.liveStreamUrls.pano,
-        startDate: liveEvent['start$date'],
-        endDate: liveEvent['end$date'],
-      }} />}
-      {mode === 'vod' && <VodVideo sources={vodEvents} />}
-      <CompanyLogos />
-
       <h1>一覧</h1>
       <ul>
         {props.params.map((item)=>{
           return (
             <li key={item.id}>
-               <Link href={`/venue/${item.id}`}>
-                <a>{item.title}</a>
+               <Link href={`/venue/${item.venue}`}>
+                <a>{item.venue}</a>
               </Link>
             </li>
           )
@@ -104,9 +58,6 @@ export default function Home(props) {
 
       {/* <PaymentForm /> */}
       <style jsx global>{`
-        body {
-          background: ${mode === 'vod' ? "#24313B" : "#F18FA2"};
-        }
       `}</style>
     </div>
   );

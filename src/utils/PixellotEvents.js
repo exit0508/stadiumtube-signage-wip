@@ -30,7 +30,7 @@ export const getLiveEvents = async (venueId, limit = 1) => {
   });
 };
 
-export const getVodEvents = async (venueId, limit = 4) => {
+export const getVodEvents = async (venueId, limit) => {
   return await getEvents({
     limit,
     sort: '{"start$date": -1}',
