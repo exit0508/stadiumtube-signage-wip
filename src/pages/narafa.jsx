@@ -15,7 +15,7 @@ import path from 'path'
 
 export const getServerSideProps = async (context) => {
   const venueId = process.env['VENUE_ID'] || '5dd2966df08c6007922ed4ce';
-  const events = await getVodEvents(venueId);
+  const events = await getVodEvents(venueId, 4);
   //console.log(events)
 
   //local env
@@ -72,8 +72,6 @@ export default function Home(props) {
         <option value="vod">vod</option>
         <option value="live_hd">live_hd</option>
         <option value="live_pano">live_pano</option>
-        <option value="ad_slide">ad_slide</option>
-        <option value="vod_select">vod_select</option>
       </select>
       {/* <TransitionAnime mode={mode} /> */}
 
@@ -88,9 +86,7 @@ export default function Home(props) {
         startDate: liveEvent['start$date'],
         endDate: liveEvent['end$date'],
       }} />}
-      {mode === 'vod' && <VodVideo sources={vodEvents} />}
-
-      {mode === 'vod_select' && <VodSelect sources={vodEvents} />}
+      {mode === 'vod' && <VodVideo sources={vodEvents} number={4}  />}
 
 
       <CompanyLogos />

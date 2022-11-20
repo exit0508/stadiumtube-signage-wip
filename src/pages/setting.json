@@ -2,15 +2,15 @@
     {
         "venueId": 1,
         "venue": "nara",
-        "imgURL": "https://pixabay.com/images/id-613199/",
-        "vodURL": "https://d1d571sdp9ba4j.cloudfront.net/nttwest/635a7589cb45435816e7eafe/hd-copied.mp4",
-        "mode": 0
+        "modes": ["normal", "vodSelect", "adv"],
+        "imgURL":["https://pixabay.com/images/id-613199/"],
+        "vodURL": ["https://d1d571sdp9ba4j.cloudfront.net/nttwest/635a7589cb45435816e7eafe/hd-copied.mp4"]
     },
     {
         "venueId": 2,
-        "title": "test",
-        "imgURL": "https://pixabay.com/images/id-613199/",
-        "vodURL": null,
-        "mode": 1
+        "venue": "test",
+        "modes": ["normal", "vodSelect", "adv"],
+        "imgURL":[null],
+        "vodURL": ["https://d1d571sdp9ba4j.cloudfront.net/nttwest/635a7589cb45435816e7eafe/hd-copied.mp4"]
     }
 ]

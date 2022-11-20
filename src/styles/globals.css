@@ -72,3 +72,12 @@ body {
   font-size: large;
   color: whitesmoke;
 }
+
+.vod-list {
+  margin-left: 1.7em;
+  width: auto;
+}
+
+.vod-item {
+  display: inline-block;
+}

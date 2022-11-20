@@ -14,9 +14,6 @@ import fsPromises from 'fs/promises'
 import path from 'path'
 
 export const getServerSideProps = async (context) => {
-  const venueId = process.env['VENUE_ID'] || '5dd2966df08c6007922ed4ce';
-  const events = await getVodEvents(venueId);
-
   //local env
   const filePath = path.join(process.cwd(), '/src/pages/setting.json');
   const data = await fsPromises.readFile(filePath);
@@ -27,13 +24,7 @@ export const getServerSideProps = async (context) => {
 
   return {
     props: {
-      params,
-      venueId,
-      vodEvents: events.map((event) => { return {
-        src: event.urls.hd,
-        startDate: event['start$date'],
-        endDate: event['end$date'],
-      }; }),
+      params
     },
   }
 };
@@ -46,9 +37,10 @@ export default function Home(props) {
       <h1>一覧</h1>
       <ul>
         {props.params.map((item)=>{
+          console.log(item)
           return (
-            <li key={item.id}>
-               <Link href={`/venue/${item.venue}`}>
+            <li key={item.venueId}>
+               <Link href={`/venue/${item.venueId}`}>
                 <a>{item.venue}</a>
               </Link>
             </li>

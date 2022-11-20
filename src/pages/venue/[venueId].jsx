@@ -7,16 +7,18 @@ import PaymentForm from "../../components/PaymentForm";
 import { getVodEvents } from '../../utils/PixellotEvents';
 import TransitionAnime from "../../components/TransitionAnime";
 import VodSelect from "../../components/VodSelect";
+import NormalMode from "../../components/NormalMode"
 
 // local env
 import Link from 'next/link';
+import {useRouter} from 'next/router'
 import fsPromises from 'fs/promises'
 import path from 'path'
 
 export const getServerSideProps = async (context) => {
   const venueId = process.env['VENUE_ID'] || '5dd2966df08c6007922ed4ce';
   const events = await getVodEvents(venueId, 10);
-  //console.log(events)
+  console.log(events)
 
   //local env
   const filePath = path.join(process.cwd(), '/src/pages/setting.json');
@@ -40,34 +42,43 @@ export const getServerSideProps = async (context) => {
   }
 };
 
-export default function Home(props) {
+export default function (props) {
+
   //console.log('props: ' + JSON.stringify(props.params))
 
   const [val, setVal] = useState('normal');
+  const [vodList, setVodList] = useState('');
+  const [visible, setVisible] = useState(false);
   const handleChange = e => setVal(e.target.value);
   const { venueId, vodEvents } = props;
-  console.log('props: ' + JSON.stringify(props))
+  //console.log('props: ' + JSON.stringify(props))
+
 
   return (
     <div className="letter">
-      <h1>モード選択</h1>
-      <label>
-        <input type="radio" value="normal" onChange={handleChange} checked={val === 'normal'}/>
-        通常モード
-      </label>
-      <label>
-        <input type="radio" value="vodSelect" onChange={handleChange} checked={val === 'vodSelect'}/>
-        指定動画再生モード
-      </label>
-      <label>
-        <input type="radio" value="adv" onChange={handleChange} checked={val === 'adv'}/>
-        広告再生モード
-      </label>
-      <p>選択値：{val}</p>
+      <div className="menu">
+        <h1>モード選択</h1>
+        <label>
+          <input type="radio" value="normal" onChange={handleChange} checked={val === 'normal'}/>
+          通常モード
+        </label>
+        <label>
+          <input type="radio" value="vodSelect" onChange={handleChange} checked={val === 'vodSelect'}/>
+          指定動画再生モード
+        </label>
+        <label>
+          <input type="radio" value="adv" onChange={handleChange} checked={val === 'adv'}/>
+          広告再生モード
+        </label>
+        <p>選択値：{val}</p>
 
-      {val === 'vodSelect' && <VodSelect sources={vodEvents} />}
-      
-      <CompanyLogos />
+        {val === 'normal' && <a href="/narafa">決定</a>}
+        
+        
+
+        {val === 'vodSelect' && <VodSelect sources={vodEvents}/>}
+        <CompanyLogos />
+      </div>
       {/* <PaymentForm /> */}
       <style jsx>{`
         .letter {
